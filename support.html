@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>下一组 Next Set 支持页面</title>
+  <style>
+    :root {
+      --bg: #f7f9fa;
+      --card: #ffffff;
+      --text: #1a1a1a;
+      --muted: #666666;
+      --line: #ebeef2;
+      --accent: #ff7a50;
+      --accent-soft: rgba(255, 122, 80, 0.12);
+      --max: 840px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Noto Sans CJK SC", "Microsoft YaHei", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(255, 122, 80, 0.18), transparent 28%),
+        linear-gradient(180deg, #fff7f2 0%, var(--bg) 260px);
+      line-height: 1.75;
+    }
+
+    main {
+      width: min(calc(100% - 32px), var(--max));
+      margin: 0 auto;
+      padding: 40px 0 72px;
+    }
+
+    .hero,
+    .grid article {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      box-shadow: 0 10px 28px rgba(26, 26, 26, 0.06);
+    }
+
+    .hero {
+      padding: 30px;
+      margin-bottom: 18px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
+    h1 {
+      margin: 16px 0 10px;
+      font-size: 34px;
+      line-height: 1.2;
+    }
+
+    h2 {
+      margin: 0 0 10px;
+      font-size: 20px;
+      line-height: 1.35;
+    }
+
+    p,
+    li {
+      font-size: 16px;
+    }
+
+    .lead,
+    .muted {
+      color: var(--muted);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .grid article {
+      padding: 24px;
+    }
+
+    ul {
+      margin: 10px 0 0 20px;
+      padding: 0;
+    }
+
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 18px;
+      padding: 12px 18px;
+      border-radius: 999px;
+      background: var(--accent);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .cta:hover {
+      opacity: 0.92;
+    }
+
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 14px;
+      background: #f7f9fa;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 2px 6px;
+    }
+
+    @media (max-width: 720px) {
+      main {
+        width: min(calc(100% - 24px), var(--max));
+        padding-top: 24px;
+      }
+
+      .hero,
+      .grid article {
+        border-radius: 22px;
+      }
+
+      .hero,
+      .grid article {
+        padding: 22px 20px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        font-size: 28px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <span class="eyebrow">Next Set / 下一组</span>
+      <h1>支持页面</h1>
+      <p class="lead">下一组（Next Set）是一款围绕训练过程管理设计的 iPhone 健身训练应用，帮助你整理今天的训练动作、管理组间休息，并自动记录训练历史。</p>
+      <a class="cta" href="./privacy-policy.html">查看隐私政策</a>
+    </section>
+
+    <section class="grid">
+      <article>
+        <h2>应用能做什么</h2>
+        <ul>
+          <li>创建今天的训练计划</li>
+          <li>从常用计划或系统推荐快速开始</li>
+          <li>自定义动作、组数与组间休息</li>
+          <li>训练中自动进入休息倒计时</li>
+          <li>训练完成后自动生成历史记录</li>
+        </ul>
+      </article>
+
+      <article>
+        <h2>首版支持范围</h2>
+        <ul>
+          <li>当前版本仅支持 iPhone</li>
+          <li>当前不需要登录账号</li>
+          <li>训练数据默认只保存在本地设备</li>
+          <li>当前不包含 Apple Watch 与心率能力</li>
+        </ul>
+      </article>
+
+      <article>
+        <h2>常见问题</h2>
+        <p><strong>训练数据会上传吗？</strong><br>当前版本不会，训练计划、历史记录与设置默认保存在本地设备。</p>
+        <p><strong>休息结束会自动开始下一组吗？</strong><br>不会。休息结束后只会提醒你“可以开始了”，由你自己决定何时继续。</p>
+      </article>
+
+      <article>
+        <h2>联系开发者</h2>
+        <p>当前支持与反馈可先通过 GitHub 仓库 Issue 提交：<a href="https://github.com/jack1ripper/fitness/issues">github.com/jack1ripper/fitness/issues</a></p>
+        <p class="muted">如果后续你补了独立支持邮箱或官网，再把这里替换成新的公开支持渠道即可。</p>
+      </article>
+    </section>
+  </main>
+</body>
+</html>
