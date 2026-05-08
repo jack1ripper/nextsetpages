@@ -4,6 +4,47 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>下一组 Next Set 隐私政策</title>
+  <meta name="description" content="Next Set 隐私政策：当前版本不要求注册账号，也不会将训练记录上传到开发者服务器。">
+  <script>
+    (function () {
+      var T = {
+        zh: {
+          title: '下一组 Next Set 隐私政策',
+          desc: 'Next Set 隐私政策：当前版本不要求注册账号，也不会将训练记录上传到开发者服务器。'
+        },
+        en: {
+          title: 'Next Set — Privacy Policy',
+          desc: 'Next Set privacy policy: the current version requires no sign-up and never uploads your training data to our servers.'
+        }
+      };
+      var saved = null;
+      try { saved = localStorage.getItem('nextset_lang'); } catch (e) {}
+      var lang = saved;
+      if (lang !== 'zh' && lang !== 'en') {
+        var bl = (navigator.language || navigator.userLanguage || 'zh').toLowerCase();
+        lang = bl.indexOf('zh') === 0 ? 'zh' : 'en';
+      }
+      function apply(l) {
+        document.documentElement.dataset.lang = l;
+        document.documentElement.lang = l === 'zh' ? 'zh-CN' : 'en';
+        document.title = T[l].title;
+        if (document.readyState !== 'loading') {
+          var m = document.querySelector('meta[name="description"]');
+          if (m) m.setAttribute('content', T[l].desc);
+        }
+        try { localStorage.setItem('nextset_lang', l); } catch (e) {}
+        window._NS_LANG = l;
+      }
+      apply(lang);
+      window.toggleLang = function () {
+        apply(window._NS_LANG === 'zh' ? 'en' : 'zh');
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        var m = document.querySelector('meta[name="description"]');
+        if (m) m.setAttribute('content', T[window._NS_LANG].desc);
+      });
+    })();
+  </script>
   <style>
     :root {
       --bg: #f7f9fa;
@@ -32,6 +73,62 @@
       width: min(calc(100% - 32px), var(--max));
       margin: 0 auto;
       padding: 40px 0 72px;
+    }
+
+    /* Bilingual visibility */
+    html[data-lang="zh"] [data-i18n="en"] { display: none !important; }
+    html[data-lang="en"] [data-i18n="zh"] { display: none !important; }
+
+    nav.top-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 4px 18px;
+      gap: 12px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 16px;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .brand-mark {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+
+    .lang-toggle {
+      padding: 6px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: var(--card);
+      color: var(--text);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s, color 0.2s;
+      font-family: inherit;
+      line-height: 1;
+    }
+
+    .lang-toggle:hover {
+      background: var(--accent-soft);
+      border-color: var(--accent);
+      color: var(--accent);
     }
 
     .hero,
@@ -130,59 +227,140 @@
 </head>
 <body>
   <main>
+    <nav class="top-nav">
+      <a href="./" class="brand">
+        <span class="brand-mark">N</span>
+        <span>Next Set</span>
+      </a>
+      <button class="lang-toggle" type="button" onclick="toggleLang()" aria-label="切换语言 / Switch language">
+        <span data-i18n="zh">EN</span>
+        <span data-i18n="en">中文</span>
+      </button>
+    </nav>
+
     <section class="hero">
       <span class="eyebrow">Next Set / 下一组</span>
-      <h1>隐私政策</h1>
-      <p class="meta">最近更新：2026 年 5 月 2 日</p>
-      <p class="lead">下一组（Next Set）是一款围绕训练过程管理设计的 iPhone 健身训练应用。当前版本不要求注册账号，也不会将你的训练记录上传到开发者服务器。</p>
+      <h1>
+        <span data-i18n="zh">隐私政策</span>
+        <span data-i18n="en">Privacy Policy</span>
+      </h1>
+      <p class="meta">
+        <span data-i18n="zh">最近更新：2026 年 5 月 2 日</span>
+        <span data-i18n="en">Last updated: May 2, 2026</span>
+      </p>
+      <p class="lead">
+        <span data-i18n="zh">下一组（Next Set）是一款围绕训练过程管理设计的 iPhone 健身训练应用。当前版本不要求注册账号，也不会将你的训练记录上传到开发者服务器。</span>
+        <span data-i18n="en">Next Set is an iPhone fitness training app focused on managing your workout flow. The current version requires no sign-up and never uploads your training data to our servers.</span>
+      </p>
     </section>
 
     <section class="section">
-      <h2>1. 我们会处理哪些数据</h2>
-      <p>你在应用内创建或产生的数据可能包括训练动作与计划、训练历史记录，以及应用内偏好设置。这些数据默认仅保存在你的设备本地，用于让应用正常运行。</p>
+      <h2>
+        <span data-i18n="zh">1. 我们会处理哪些数据</span>
+        <span data-i18n="en">1. What data we process</span>
+      </h2>
+      <p>
+        <span data-i18n="zh">你在应用内创建或产生的数据可能包括训练动作与计划、训练历史记录，以及应用内偏好设置。这些数据默认仅保存在你的设备本地，用于让应用正常运行。</span>
+        <span data-i18n="en">The data you create or generate in the app may include exercises and plans, workout history, and in-app preferences. By default this data is stored only on your device and is used solely to make the app work.</span>
+      </p>
     </section>
 
     <section class="section">
-      <h2>2. 这些数据如何被使用</h2>
+      <h2>
+        <span data-i18n="zh">2. 这些数据如何被使用</span>
+        <span data-i18n="en">2. How this data is used</span>
+      </h2>
       <ul>
-        <li>展示你的今日训练计划</li>
-        <li>记录训练完成情况</li>
-        <li>保存历史记录</li>
-        <li>保留你的个性化设置</li>
+        <li>
+          <span data-i18n="zh">展示你的今日训练计划</span>
+          <span data-i18n="en">Show your training plan for today</span>
+        </li>
+        <li>
+          <span data-i18n="zh">记录训练完成情况</span>
+          <span data-i18n="en">Record completed workouts</span>
+        </li>
+        <li>
+          <span data-i18n="zh">保存历史记录</span>
+          <span data-i18n="en">Save your training history</span>
+        </li>
+        <li>
+          <span data-i18n="zh">保留你的个性化设置</span>
+          <span data-i18n="en">Keep your preferences</span>
+        </li>
       </ul>
     </section>
 
     <section class="section">
-      <h2>3. 通知与提醒</h2>
-      <p>如果你授权通知权限，下一组（Next Set）可能会在训练过程中向你发送本地通知，用于提醒组间休息结束。这些通知仅在你的设备本地触发，不会用于广告、营销或跨应用跟踪。</p>
+      <h2>
+        <span data-i18n="zh">3. 通知与提醒</span>
+        <span data-i18n="en">3. Notifications and reminders</span>
+      </h2>
+      <p>
+        <span data-i18n="zh">如果你授权通知权限，下一组（Next Set）可能会在训练过程中向你发送本地通知，用于提醒组间休息结束。这些通知仅在你的设备本地触发，不会用于广告、营销或跨应用跟踪。</span>
+        <span data-i18n="en">If you grant notification permission, Next Set may send local notifications during workouts to alert you when rest periods end. These notifications fire locally on your device and are never used for advertising, marketing, or cross-app tracking.</span>
+      </p>
     </section>
 
     <section class="section">
-      <h2>4. 第三方共享</h2>
-      <p>当前版本的下一组（Next Set）不会将你的训练数据出售、出租或共享给第三方。</p>
+      <h2>
+        <span data-i18n="zh">4. 第三方共享</span>
+        <span data-i18n="en">4. Third-party sharing</span>
+      </h2>
+      <p>
+        <span data-i18n="zh">当前版本的下一组（Next Set）不会将你的训练数据出售、出租或共享给第三方。</span>
+        <span data-i18n="en">The current version of Next Set does not sell, rent, or share your training data with any third party.</span>
+      </p>
     </section>
 
     <section class="section">
-      <h2>5. 数据存储</h2>
-      <p>你的训练计划、历史记录与偏好设置默认保存在设备本地。如果你删除应用，本地数据可能会一并被删除。</p>
+      <h2>
+        <span data-i18n="zh">5. 数据存储</span>
+        <span data-i18n="en">5. Data storage</span>
+      </h2>
+      <p>
+        <span data-i18n="zh">你的训练计划、历史记录与偏好设置默认保存在设备本地。如果你删除应用，本地数据可能会一并被删除。</span>
+        <span data-i18n="en">Your training plans, history, and preferences are stored locally on your device by default. If you delete the app, your local data may be removed along with it.</span>
+      </p>
     </section>
 
     <section class="section">
-      <h2>6. 儿童隐私</h2>
-      <p>下一组（Next Set）不面向儿童定向提供服务，也不会主动收集儿童个人信息。</p>
+      <h2>
+        <span data-i18n="zh">6. 儿童隐私</span>
+        <span data-i18n="en">6. Children's privacy</span>
+      </h2>
+      <p>
+        <span data-i18n="zh">下一组（Next Set）不面向儿童定向提供服务，也不会主动收集儿童个人信息。</span>
+        <span data-i18n="en">Next Set is not directed at children and does not knowingly collect personal information from children.</span>
+      </p>
     </section>
 
     <section class="section">
-      <h2>7. 政策更新</h2>
-      <p>如果未来产品能力发生变化，例如增加云同步、账号系统、健康数据联动或第三方服务接入，我们会同步更新本隐私政策。</p>
+      <h2>
+        <span data-i18n="zh">7. 政策更新</span>
+        <span data-i18n="en">7. Policy updates</span>
+      </h2>
+      <p>
+        <span data-i18n="zh">如果未来产品能力发生变化，例如增加云同步、账号系统、健康数据联动或第三方服务接入，我们会同步更新本隐私政策。</span>
+        <span data-i18n="en">If product capabilities change in the future — for example, adding cloud sync, accounts, Health integration, or third-party services — we will update this privacy policy accordingly.</span>
+      </p>
     </section>
 
     <section class="section">
-      <h2>8. 联系我们</h2>
-      <p>如果你对本隐私政策有任何问题，可以通过支持页面或 GitHub 仓库 Issue 联系开发者：<a href="https://github.com/jack1ripper/nextsetpages/issues">github.com/jack1ripper/nextsetpages/issues</a></p>
+      <h2>
+        <span data-i18n="zh">8. 联系我们</span>
+        <span data-i18n="en">8. Contact us</span>
+      </h2>
+      <p>
+        <span data-i18n="zh">如果你对本隐私政策有任何问题，可以通过支持页面或 GitHub 仓库 Issue 联系开发者：</span>
+        <span data-i18n="en">If you have any questions about this privacy policy, you can reach the developer through the support page or via GitHub issues:</span>
+        <a href="https://github.com/jack1ripper/nextsetpages/issues">github.com/jack1ripper/nextsetpages/issues</a>
+      </p>
     </section>
 
-    <footer>本页面可直接部署到 GitHub Pages，并将公开链接填写到 App Store Connect。</footer>
+    <footer>
+      <span data-i18n="zh">本页面可直接部署到 GitHub Pages，并将公开链接填写到 App Store Connect。</span>
+      <span data-i18n="en">This page can be deployed directly to GitHub Pages, with the public URL submitted to App Store Connect.</span>
+    </footer>
   </main>
 </body>
 </html>

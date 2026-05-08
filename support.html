@@ -4,6 +4,47 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>下一组 Next Set 支持页面</title>
+  <meta name="description" content="Next Set 支持页面：iPhone 力量训练计时与历史记录工具。提供功能介绍、首版支持范围、常见问题与开发者联系方式。">
+  <script>
+    (function () {
+      var T = {
+        zh: {
+          title: '下一组 Next Set 支持页面',
+          desc: 'Next Set 支持页面：iPhone 力量训练计时与历史记录工具。提供功能介绍、首版支持范围、常见问题与开发者联系方式。'
+        },
+        en: {
+          title: 'Next Set — Support',
+          desc: 'Next Set support page: an iPhone strength-training timer and history tool. Features, first-version scope, FAQ, and developer contact.'
+        }
+      };
+      var saved = null;
+      try { saved = localStorage.getItem('nextset_lang'); } catch (e) {}
+      var lang = saved;
+      if (lang !== 'zh' && lang !== 'en') {
+        var bl = (navigator.language || navigator.userLanguage || 'zh').toLowerCase();
+        lang = bl.indexOf('zh') === 0 ? 'zh' : 'en';
+      }
+      function apply(l) {
+        document.documentElement.dataset.lang = l;
+        document.documentElement.lang = l === 'zh' ? 'zh-CN' : 'en';
+        document.title = T[l].title;
+        if (document.readyState !== 'loading') {
+          var m = document.querySelector('meta[name="description"]');
+          if (m) m.setAttribute('content', T[l].desc);
+        }
+        try { localStorage.setItem('nextset_lang', l); } catch (e) {}
+        window._NS_LANG = l;
+      }
+      apply(lang);
+      window.toggleLang = function () {
+        apply(window._NS_LANG === 'zh' ? 'en' : 'zh');
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        var m = document.querySelector('meta[name="description"]');
+        if (m) m.setAttribute('content', T[window._NS_LANG].desc);
+      });
+    })();
+  </script>
   <style>
     :root {
       --bg: #f7f9fa;
@@ -34,6 +75,62 @@
       width: min(calc(100% - 32px), var(--max));
       margin: 0 auto;
       padding: 40px 0 72px;
+    }
+
+    /* Bilingual visibility */
+    html[data-lang="zh"] [data-i18n="en"] { display: none !important; }
+    html[data-lang="en"] [data-i18n="zh"] { display: none !important; }
+
+    nav.top-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 4px 18px;
+      gap: 12px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 16px;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .brand-mark {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+
+    .lang-toggle {
+      padding: 6px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: var(--card);
+      color: var(--text);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s, color 0.2s;
+      font-family: inherit;
+      line-height: 1;
+    }
+
+    .lang-toggle:hover {
+      background: var(--accent-soft);
+      border-color: var(--accent);
+      color: var(--accent);
     }
 
     .hero,
@@ -114,6 +211,15 @@
       opacity: 0.92;
     }
 
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
     code {
       font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
       font-size: 14px;
@@ -151,45 +257,127 @@
 </head>
 <body>
   <main>
+    <nav class="top-nav">
+      <a href="./" class="brand">
+        <span class="brand-mark">N</span>
+        <span>Next Set</span>
+      </a>
+      <button class="lang-toggle" type="button" onclick="toggleLang()" aria-label="切换语言 / Switch language">
+        <span data-i18n="zh">EN</span>
+        <span data-i18n="en">中文</span>
+      </button>
+    </nav>
+
     <section class="hero">
       <span class="eyebrow">Next Set / 下一组</span>
-      <h1>支持页面</h1>
-      <p class="lead">下一组（Next Set）是一款围绕训练过程管理设计的 iPhone 健身训练应用，帮助你整理今天的训练动作、管理组间休息，并自动记录训练历史。</p>
-      <a class="cta" href="./privacy-policy.html">查看隐私政策</a>
+      <h1>
+        <span data-i18n="zh">支持页面</span>
+        <span data-i18n="en">Support</span>
+      </h1>
+      <p class="lead">
+        <span data-i18n="zh">下一组（Next Set）是一款围绕训练过程管理设计的 iPhone 健身训练应用，帮助你整理今天的训练动作、管理组间休息，并自动记录训练历史。</span>
+        <span data-i18n="en">Next Set is an iPhone fitness training app focused on managing your workout flow. It helps you organize today's exercises, manage rest between sets, and auto-track workout history.</span>
+      </p>
+      <a class="cta" href="./privacy-policy.html">
+        <span data-i18n="zh">查看隐私政策</span>
+        <span data-i18n="en">View privacy policy</span>
+      </a>
     </section>
 
     <section class="grid">
       <article>
-        <h2>应用能做什么</h2>
+        <h2>
+          <span data-i18n="zh">应用能做什么</span>
+          <span data-i18n="en">What the app can do</span>
+        </h2>
         <ul>
-          <li>创建今天的训练计划</li>
-          <li>从常用计划或系统推荐快速开始</li>
-          <li>自定义动作、组数与组间休息</li>
-          <li>训练中自动进入休息倒计时</li>
-          <li>训练完成后自动生成历史记录</li>
+          <li>
+            <span data-i18n="zh">创建今天的训练计划</span>
+            <span data-i18n="en">Create today's training plan</span>
+          </li>
+          <li>
+            <span data-i18n="zh">从常用计划或系统推荐快速开始</span>
+            <span data-i18n="en">Start fast from frequent plans or built-in suggestions</span>
+          </li>
+          <li>
+            <span data-i18n="zh">自定义动作、组数与组间休息</span>
+            <span data-i18n="en">Customize exercises, sets, and rest</span>
+          </li>
+          <li>
+            <span data-i18n="zh">训练中自动进入休息倒计时</span>
+            <span data-i18n="en">Auto rest countdown during training</span>
+          </li>
+          <li>
+            <span data-i18n="zh">训练完成后自动生成历史记录</span>
+            <span data-i18n="en">Auto session summary when finished</span>
+          </li>
         </ul>
       </article>
 
       <article>
-        <h2>首版支持范围</h2>
+        <h2>
+          <span data-i18n="zh">首版支持范围</span>
+          <span data-i18n="en">What this first version supports</span>
+        </h2>
         <ul>
-          <li>当前版本仅支持 iPhone</li>
-          <li>当前不需要登录账号</li>
-          <li>训练数据默认只保存在本地设备</li>
-          <li>当前不包含 Apple Watch 与心率能力</li>
+          <li>
+            <span data-i18n="zh">当前版本仅支持 iPhone</span>
+            <span data-i18n="en">Current version supports iPhone only</span>
+          </li>
+          <li>
+            <span data-i18n="zh">当前不需要登录账号</span>
+            <span data-i18n="en">No sign-in required</span>
+          </li>
+          <li>
+            <span data-i18n="zh">训练数据默认只保存在本地设备</span>
+            <span data-i18n="en">Training data is stored only on your device by default</span>
+          </li>
+          <li>
+            <span data-i18n="zh">当前不包含 Apple Watch 与心率能力</span>
+            <span data-i18n="en">Apple Watch and heart-rate features are not included for now</span>
+          </li>
         </ul>
       </article>
 
       <article>
-        <h2>常见问题</h2>
-        <p><strong>训练数据会上传吗？</strong><br>当前版本不会，训练计划、历史记录与设置默认保存在本地设备。</p>
-        <p><strong>休息结束会自动开始下一组吗？</strong><br>不会。休息结束后只会提醒你“可以开始了”，由你自己决定何时继续。</p>
+        <h2>
+          <span data-i18n="zh">常见问题</span>
+          <span data-i18n="en">FAQ</span>
+        </h2>
+        <p>
+          <strong>
+            <span data-i18n="zh">训练数据会上传吗？</span>
+            <span data-i18n="en">Will my training data be uploaded?</span>
+          </strong>
+          <br>
+          <span data-i18n="zh">当前版本不会，训练计划、历史记录与设置默认保存在本地设备。</span>
+          <span data-i18n="en">Not in the current version. Plans, history, and settings stay on your device by default.</span>
+        </p>
+        <p>
+          <strong>
+            <span data-i18n="zh">休息结束会自动开始下一组吗？</span>
+            <span data-i18n="en">Does the next set start automatically after rest?</span>
+          </strong>
+          <br>
+          <span data-i18n="zh">不会。休息结束后只会提醒你“可以开始了”，由你自己决定何时继续。</span>
+          <span data-i18n="en">No. When rest ends you'll only get a "ready to go" reminder — you decide when to begin the next set.</span>
+        </p>
       </article>
 
       <article>
-        <h2>联系开发者</h2>
-        <p>当前支持与反馈可先通过 GitHub 仓库 Issue 提交：<a href="https://github.com/jack1ripper/nextsetpages/issues">github.com/jack1ripper/nextsetpages/issues</a></p>
-        <p class="muted">如果后续你补了独立支持邮箱或官网，再把这里替换成新的公开支持渠道即可。</p>
+        <h2>
+          <span data-i18n="zh">联系开发者</span>
+          <span data-i18n="en">Contact the developer</span>
+        </h2>
+        <p>
+          <span data-i18n="zh">当前支持与反馈可先通过 GitHub 仓库 Issue 提交：</span>
+          <span data-i18n="en">Support and feedback go through GitHub issues for now:</span>
+          <a href="https://github.com/jack1ripper/nextsetpages/issues">github.com/jack1ripper/nextsetpages/issues</a>
+        </p>
+        <p class="muted">
+          <span data-i18n="zh">如果后续你补了独立支持邮箱或官网，再把这里替换成新的公开支持渠道即可。</span>
+          <span data-i18n="en">Once a dedicated support email or site is set up, swap this section with the new public channel.</span>
+        </p>
       </article>
     </section>
   </main>
